@@ -1,0 +1,22 @@
+- 
+  name: Create File if not exist
+  hosts: all
+  vars:
+    - user: ubuntu
+    - file_exist: file already exist
+  tasks:
+    - name: check if file already exists
+      command: ls /home/{{user}}/myfile.txt
+      register: does_file_exist
+      ignore_errors: yes
+   
+    - name: Create file if it does not exist
+      file:
+        path: /home/{{user}}/myfile.txt
+        state: touch
+      when: does_file_exist is failed
+ 
+    - name: Show message if file already exist
+      debug:
+        msg: file already exist at the given path
+      when: does_file_exist is succeeded

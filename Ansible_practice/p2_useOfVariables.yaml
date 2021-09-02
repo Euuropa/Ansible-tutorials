@@ -1,0 +1,11 @@
+-
+  name: use of variables
+  hosts: all
+  vars:
+   -  user: euuropa
+   -  email: euuropa@gmail.com
+  tasks:
+   - name: print Username and Email
+     debug: 
+      msg: "Username: {{user}}, Email: {{email}}"
+      

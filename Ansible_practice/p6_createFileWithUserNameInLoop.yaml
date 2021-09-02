@@ -1,0 +1,12 @@
+- 
+  name: Create file for each user present in loop
+  hosts: all
+  tasks:
+    - name: create file
+      file: 
+        path: /tmp/directory-{{item}}
+        state: touch
+      loop:
+       - Ram
+       - Shyam
+       - Mohan
