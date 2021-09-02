@@ -1,0 +1,12 @@
+- 
+  name: Create file if not Exist on servers
+  hosts: all
+  vars:
+    - create_file: yes
+    - user: ubuntu
+  tasks:
+    - name: create file for ubuntu
+      file:
+        path: /home/ubuntu/myfile.txt
+        state: touch
+      when: create_file
